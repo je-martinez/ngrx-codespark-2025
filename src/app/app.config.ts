@@ -7,8 +7,12 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
+import { provideHttpClient } from '@angular/common/http';
+import { ProductsEffects, productsFeature } from './store/products';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CartEffects, cartFeature } from './store/cart';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +20,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideStore(),
-    provideEffects(),
+    provideState(productsFeature),
+    provideState(cartFeature),
+    provideEffects(ProductsEffects, CartEffects),
+    provideHttpClient(),
+    provideAnimationsAsync(),
   ],
 };

@@ -5,7 +5,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
 })
 export class AppComponent {
   title = 'ngrx-codespark-2025';

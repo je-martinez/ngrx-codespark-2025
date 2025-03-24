@@ -1,0 +1,12 @@
+<div class="flex items-center justify-center p-4">
+  <div class="max-w-2xl w-full bg-white rounded-xl shadow-lg p-6">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Shopping Cart ({{ numberOfItems$ | async }})</h2>
+    <div class="space-y-4">
+      @for (item of cartItems$ | async; track item.product.id) {
+      <checkout-item-component [item]="item" (onIncreaseQuantity)="increaseQuantity(item.product.id)"
+        (onDecreaseQuantity)="decreaseQuantity(item.product.id)" (onRemoveItem)="removeItem(item.product.id)" />
+      }
+      <checkout-summary-component [total]="(total$ | async) ?? 0" />
+    </div>
+  </div>
+</div>
