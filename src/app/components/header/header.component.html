@@ -4,5 +4,6 @@
 
 <nav class="bg-blue-500 text-center py-3">
   <a routerLink="/" class="text-white px-4 py-2 inline-block hover:bg-blue-600 transition">Home</a>
-  <a routerLink="/cart" class="text-white px-4 py-2 inline-block hover:bg-blue-600 transition">Cart</a>
+  <a routerLink="/cart" class="text-white px-4 py-2 inline-block hover:bg-blue-600 transition">Cart ({{ quantity$ |
+    async }})</a>
 </nav>
