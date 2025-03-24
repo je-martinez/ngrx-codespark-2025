@@ -1,1 +1,14 @@
-<product-list-component />
+<!-- Loading -->
+<div *ngIf="productsLoading$ | async" @fadeInOut>
+  <loading-component />
+</div>
+
+<!-- Error -->
+<div *ngIf="!(productsLoading$ | async) && (productsError$ | async) as error" @fadeInOut>
+  <div class="text-red-500">Error: {{ error }}</div>
+</div>
+
+<!-- Products -->
+<div *ngIf="!(productsLoading$ | async) && !(productsError$ | async)" @fadeInOut>
+  <product-list-component [products]="(products$ | async) ?? []" />
+</div>
