@@ -13,6 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { ProductsEffects, productsFeature } from './store/products';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CartEffects, cartFeature } from './store/cart';
+import { GeolocationEffects, geolocationFeature } from './store/geolocation';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,8 +22,9 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideStore(),
     provideState(productsFeature),
+    provideState(geolocationFeature),
     provideState(cartFeature),
-    provideEffects(ProductsEffects, CartEffects),
+    provideEffects(ProductsEffects, CartEffects, GeolocationEffects),
     provideHttpClient(),
     provideAnimationsAsync(),
   ],
