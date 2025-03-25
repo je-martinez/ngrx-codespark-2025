@@ -3,24 +3,17 @@ import { RouterLink } from '@angular/router';
 import { CartFacade } from '../../store/cart';
 import { AsyncPipe } from '@angular/common';
 import { GeolocationService } from '../../services/geolocation.service';
+import { GeolocationFacade } from '../../store/geolocation';
 
 @Component({
   selector: 'header-component',
   imports: [RouterLink, AsyncPipe],
   templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   private cartFacade = inject(CartFacade);
-  private geolocation = inject(GeolocationService);
+  private geolocationFacade = inject(GeolocationFacade);
   quantity$ = this.cartFacade.getNumberOfItems();
 
-  currentCity: string = "";
-
-  ngOnInit(): void {
-    navigator.geolocation.getCurrentPosition((val) => {
-      this.geolocation.getCurrentCity(val).subscribe((response) => {
-        this.currentCity = response.results[0].formatted_address;
-      });
-    })
-  }
+  currentCity$ = this.geolocationFacade.selectCity();
 }

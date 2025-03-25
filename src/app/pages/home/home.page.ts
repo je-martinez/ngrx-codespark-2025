@@ -3,6 +3,7 @@ import { ProductListComponent, LoadingComponent } from '../../components';
 import { ProductsFacade } from '../../store/products/products.facade';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { GeolocationFacade } from '../../store/geolocation';
 @Component({
   selector: 'home-page',
   imports: [ProductListComponent, AsyncPipe, LoadingComponent, NgIf],
@@ -20,6 +21,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class HomePage implements OnInit {
   private productsFacade = inject(ProductsFacade);
+  private geolocationFacade = inject(GeolocationFacade);
 
   products$ = this.productsFacade.selectProducts();
   productsLoading$ = this.productsFacade.selectProductsLoading();
@@ -27,5 +29,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.productsFacade.fetchProducts();
+    this.geolocationFacade.fetchGeolocation();
   }
 }
