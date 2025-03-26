@@ -12,7 +12,9 @@
     <p>{{ formattedTotal }}</p>
   </div>
 
-  <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-lg transition-colors">
+  <button
+    class="w-full bg-blue-500 hover:bg-blue-600 hover:cursor-pointer text-white font-medium py-3 rounded-lg transition-colors"
+    (click)="onClickCheckout()">
     Checkout
   </button>
 </div>
