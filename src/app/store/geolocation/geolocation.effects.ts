@@ -17,7 +17,7 @@ export class GeolocationEffects {
             ofType(GeolocationActions.fetchGeolocation),
             concatMap(() => {
                 navigator.geolocation.getCurrentPosition((position) => {
-                    GeolocationActions.updateGeolocation({ position });
+                    this.store.dispatch(GeolocationActions.updateGeolocation({ position }));
                     this.store.dispatch(GeolocationActions.fetchCity({ position }));
                 });
                 return of(GeolocationActions.fetchGeolocationComplete())
